@@ -1,0 +1,134 @@
+{
+  "asteroid": {
+    "name": "99942 Apophis",
+    "provisional_designation": "2004 MN4",
+    "named_after": "Apophis (Apep), the ancient Egyptian serpent deity of chaos",
+    "discovery": {
+      "date": "2004-06-19",
+      "observers": [
+        "Roy A. Tucker",
+        "David J. Tholen",
+        "Fabrizio Bernardi"
+      ],
+      "location": "Kitt Peak National Observatory, Arizona, USA",
+      "telescope": "2.3-meter Bok telescope with Steward Observatory 90prime camera"
+    }
+  },
+  "physical": {
+    "diameter_m": 370,
+    "dimensions_m": "450 × 170",
+    "shape": "Bilobed (elongated peanut shape)",
+    "mass_kg": 61000000000,
+    "density_g_cm3": 2.2,
+    "albedo": 0.35,
+    "spectral_type": "Sq",
+    "composition": "Stony — silicate minerals (olivine, pyroxene), metallic iron; similar to LL chondrite meteorites",
+    "rotation_period_hours": 30.4,
+    "rotation_state": "Non-principal axis (tumbling)"
+  },
+  "orbital": {
+    "class": "Aten",
+    "semi_major_axis_au": 0.9224,
+    "eccentricity": 0.1911,
+    "inclination_deg": 3.339,
+    "period_days": 323.6,
+    "perihelion_au": 0.7461,
+    "aphelion_au": 1.0986,
+    "ascending_node_deg": 204.43,
+    "arg_perihelion_deg": 126.39,
+    "mean_anomaly_deg": 215.54
+  },
+  "close_approach_2029": {
+    "date": "2029-04-13",
+    "time_utc": "21:46",
+    "distance_km": 31600,
+    "distance_earth_radii": 4.95,
+    "velocity_km_s": 7.42,
+    "apparent_magnitude": 3.1,
+    "visible_from": [
+      "Europe",
+      "Africa",
+      "Western Asia"
+    ],
+    "closer_than_geostationary": true,
+    "geostationary_altitude_km": 35786,
+    "comparison": "Closer than geostationary satellites, ~10x closer than the Moon"
+  },
+  "impact_risk": {
+    "current_torino_scale": 0,
+    "impact_probability": 0,
+    "ruled_out_through_year": 2116,
+    "peak_torino_rating": 4,
+    "peak_torino_year": 2004,
+    "palermo_scale": -9.86,
+    "history": [
+      {
+        "year": 2004,
+        "rating": 4,
+        "note": "Highest Torino rating ever assigned"
+      },
+      {
+        "year": 2005,
+        "rating": 1,
+        "note": "Pre-discovery observations refined orbit"
+      },
+      {
+        "year": 2006,
+        "rating": 0,
+        "note": "2029 impact ruled out; brief concern for 2036 keyhole"
+      },
+      {
+        "year": 2021,
+        "rating": 0,
+        "note": "All scenarios eliminated through 2116 via radar"
+      }
+    ]
+  },
+  "missions": [
+    {
+      "name": "OSIRIS-APEX",
+      "agency": "NASA",
+      "type": "Rendezvous / orbit",
+      "formerly": "OSIRIS-REx (returned Bennu samples Sept 2023)",
+      "arrival": "April 2029",
+      "duration_months": 18,
+      "objectives": [
+        "Map shape and surface changes from tidal forces",
+        "Measure spin state alteration",
+        "Perform gas thruster surface disturbance experiment",
+        "Study subsurface composition"
+      ]
+    },
+    {
+      "name": "RAMSES",
+      "full_name": "Rapid Apophis Mission for Space Safety",
+      "agency": "ESA",
+      "type": "Rendezvous / observation",
+      "launch": "April 2028",
+      "arrival": "February 2029",
+      "objectives": [
+        "Characterize Apophis before close approach",
+        "Monitor real-time tidal deformation during flyby",
+        "Compare before/after surface and shape changes",
+        "Test rapid-response planetary defense capabilities"
+      ],
+      "instruments": [
+        "Camera suite",
+        "Lidar altimeter",
+        "Thermal spectrometer",
+        "Dust analyzer"
+      ]
+    }
+  ],
+  "fun_facts": [
+    "Apophis will be visible to the naked eye during closest approach — a rare event for an asteroid",
+    "The asteroid will move across the sky fast enough to track with the unaided eye",
+    "Earth's gravity will change Apophis's orbital class from Aten to Apollo",
+    "The close approach will shorten Apophis's orbital period from 323 to 307 days",
+    "At closest approach, Apophis will be moving at about 7.4 km/s relative to Earth",
+    "The 2029 flyby will be visible from about 2 billion people across Europe, Africa, and Asia",
+    "Apophis will briefly become brighter than the stars in the Little Dipper",
+    "The asteroid's tumbling rotation is expected to change significantly due to Earth's tidal torques"
+  ],
+  "servedAt": "2026-02-25T13:38:00.676Z"
+}

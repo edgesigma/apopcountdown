@@ -1,0 +1,20 @@
+{
+  "arrival": {
+    "iso": "2029-04-13T21:46:00.000Z",
+    "unix": 1870811160,
+    "description": "April 13, 2029 at 21:46 UTC"
+  },
+  "countdown": {
+    "isPast": false,
+    "years": 3,
+    "days": 47,
+    "hours": 8,
+    "minutes": 7,
+    "seconds": 59,
+    "totalDays": 1143,
+    "totalHours": 27440,
+    "totalMinutes": 1646407,
+    "totalSeconds": 98784479
+  },
+  "computedAt": "2026-02-25T13:38:00.673Z"
+}

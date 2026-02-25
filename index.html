@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apophis Countdown — April 13, 2029</title>
+  <meta name="description" content="Live countdown to asteroid 99942 Apophis's historic close approach on April 13, 2029. Interactive 3D visualization, real-time orbital data, and scientific facts.">
+  <meta property="og:title" content="Apophis Countdown — April 13, 2029">
+  <meta property="og:description" content="Watch the countdown to asteroid 99942 Apophis's closest approach to Earth — just 31,600 km away.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/app.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☄️</text></svg>">
+</head>
+<body>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <canvas id="hero-asteroid"></canvas>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-top-bar">
+        <span class="terminal-tag">SYS.99942</span>
+        <span class="terminal-tag blink-slow">● LIVE</span>
+      </div>
+
+      <pre class="ascii-title" id="ascii-title" aria-label="APOPHIS"></pre>
+
+      <p class="hero-sub">Closest asteroid flyby in recorded history</p>
+
+      <div class="countdown" id="countdown">
+        <div class="cd-group">
+          <div class="cd-val" id="cd-years">-</div>
+          <div class="cd-lbl">YRS</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-group">
+          <div class="cd-val" id="cd-days">-</div>
+          <div class="cd-lbl">DAYS</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-group">
+          <div class="cd-val" id="cd-hours">-</div>
+          <div class="cd-lbl">HRS</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-group">
+          <div class="cd-val" id="cd-minutes">-</div>
+          <div class="cd-lbl">MIN</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-group">
+          <div class="cd-val" id="cd-seconds">-</div>
+          <div class="cd-lbl">SEC</div>
+        </div>
+      </div>
+
+      <div class="hero-meta">
+        <span>2029-04-13T21:46:00Z</span>
+        <span>~31,600 km</span>
+        <span>Mag 3.1</span>
+      </div>
+
+      <div class="scroll-cue">
+        <span>scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">99942</span>
+      <div class="nav-links">
+        <a href="#overview">overview</a>
+        <a href="#approach">approach</a>
+        <a href="#viewer">viewer</a>
+        <a href="#specs">specs</a>
+        <a href="#missions">missions</a>
+        <a href="#safety">safety</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ OVERVIEW ═══ -->
+  <section id="overview" class="sect">
+    <div class="container">
+      <div class="sect-label">01 / OVERVIEW</div>
+      <h2 class="sect-title reveal">What is Apophis?</h2>
+
+      <div class="prose reveal">
+        <p><strong>99942 Apophis</strong> is a near-Earth asteroid approximately <em>370 meters</em> in diameter — roughly the size of the Eiffel Tower laid on its side. Discovered June 19, 2004 at Kitt Peak Observatory, it was briefly the most threatening asteroid ever identified, with a 2.7% calculated impact probability.</p>
+        <p>Named after the Egyptian serpent deity of chaos, Apophis's threat level has since been reduced to <strong>zero</strong>. But its 2029 flyby remains the closest approach of an asteroid this size in recorded history — and an extraordinary scientific opportunity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE APPROACH ═══ -->
+  <section id="approach" class="sect">
+    <div class="container">
+      <div class="sect-label">02 / THE APPROACH</div>
+      <h2 class="sect-title reveal">April 13, 2029</h2>
+
+      <div class="data-grid reveal">
+        <div class="data-cell">
+          <div class="data-val">31,600</div>
+          <div class="data-unit">km from surface</div>
+          <div class="data-note">Closer than geostationary satellites (35,786 km)</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-val">21:46</div>
+          <div class="data-unit">UTC closest approach</div>
+          <div class="data-note">Over the Atlantic Ocean, moving northeast</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-val">3.1</div>
+          <div class="data-unit">apparent magnitude</div>
+          <div class="data-note">Naked-eye visible from Europe, Africa, W. Asia</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-val">7.42</div>
+          <div class="data-unit">km/s relative velocity</div>
+          <div class="data-note">Trackable by eye — 1 Moon-width per minute</div>
+        </div>
+      </div>
+
+      <div class="comparison-block reveal">
+        <div class="dist-header">DISTANCE FROM EARTH&apos;S SURFACE</div>
+        <div class="dist-scale">
+          <div class="dist-row">
+            <span class="dist-label">LEO satellites</span>
+            <span class="dist-bar-wrap"><span class="dist-bar" style="width: 5.3%"></span></span>
+            <span class="dist-km">2,000 km</span>
+          </div>
+          <div class="dist-row">
+            <span class="dist-label">GPS constellation</span>
+            <span class="dist-bar-wrap"><span class="dist-bar" style="width: 53%"></span></span>
+            <span class="dist-km">20,200 km</span>
+          </div>
+          <div class="dist-row dist-row--apophis">
+            <span class="dist-label">★ APOPHIS</span>
+            <span class="dist-bar-wrap"><span class="dist-bar dist-bar--apophis" style="width: 83%"></span></span>
+            <span class="dist-km">31,600 km</span>
+          </div>
+          <div class="dist-row">
+            <span class="dist-label">GEO satellites</span>
+            <span class="dist-bar-wrap"><span class="dist-bar" style="width: 94%"></span></span>
+            <span class="dist-km">35,786 km</span>
+          </div>
+          <div class="dist-row dist-row--moon">
+            <span class="dist-label">Moon</span>
+            <span class="dist-bar-wrap"><span class="dist-bar dist-bar--moon" style="width: 100%"></span><span class="dist-break">///</span></span>
+            <span class="dist-km">384,400 km</span>
+          </div>
+        </div>
+        <div class="dist-footnote">Apophis will pass <em>below</em> the geostationary satellite ring — closer than your TV signal relay.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CARBON AD ═══ -->
+  <div class="carbon-wrap">
+    <div class="container">
+      <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=PLACEHOLDER&placement=apophiscountdowncom" id="_carbonads_js"></script>
+    </div>
+  </div>
+
+  <!-- ═══ 3D VIEWER ═══ -->
+  <section id="viewer" class="sect">
+    <div class="container">
+      <div class="sect-label">03 / VIEWER</div>
+      <h2 class="sect-title reveal">Interactive Model</h2>
+    </div>
+
+    <div class="viewer-wrap reveal" id="viewer-container">
+      <div class="viewer-loading" id="viewer-loading">
+        <span class="spinner"></span>
+        <span>Initializing renderer...</span>
+      </div>
+      <div class="viewer-hud">
+        <div class="viewer-hud-left">
+          <button class="hud-btn active" id="btn-orbital">orbit</button>
+          <button class="hud-btn" id="btn-approach">flyby</button>
+        </div>
+        <div class="viewer-hud-right">
+          <div class="hud-data">
+            <span class="hud-label">DIST</span>
+            <span class="hud-value" id="viewer-distance">--</span>
+          </div>
+          <div class="hud-data">
+            <span class="hud-label">VEL</span>
+            <span class="hud-value" id="viewer-speed">--</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPECS ═══ -->
+  <section id="specs" class="sect">
+    <div class="container">
+      <div class="sect-label">04 / SPECIFICATIONS</div>
+      <h2 class="sect-title reveal">Physical Characteristics</h2>
+
+      <div class="spec-table reveal">
+        <div class="spec-row">
+          <span class="spec-key">DESIGNATION</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">99942 Apophis (2004 MN4)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">DIMENSIONS</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">~450 × 170 m (bilobed)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">MASS</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">6.1 × 10¹⁰ kg</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">DENSITY</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">2.2 g/cm³ (rubble pile)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">SPECTRAL TYPE</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">Sq — stony (olivine, pyroxene, Fe)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">ALBEDO</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">0.35</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">ROTATION</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">30.4 h (tumbling / NPA)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">ORBITAL CLASS</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">Aten → Apollo (post-2029)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">SEMI-MAJOR AXIS</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">0.9224 AU</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">ECCENTRICITY</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">0.1911</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">PERIOD</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">323.6 d → 307 d (post-2029)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">DISCOVERY</span>
+          <span class="spec-dots"></span>
+          <span class="spec-val">2004-06-19 / Kitt Peak, AZ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MISSIONS ═══ -->
+  <section id="missions" class="sect">
+    <div class="container">
+      <div class="sect-label">05 / MISSIONS</div>
+      <h2 class="sect-title reveal">Spacecraft Encounters</h2>
+
+      <div class="mission-grid reveal">
+        <div class="mission-block">
+          <div class="mission-header">
+            <span class="mission-agency">NASA</span>
+            <span class="mission-name">OSIRIS-APEX</span>
+          </div>
+          <p>Formerly OSIRIS-REx. Arrives April 2029 post-flyby. 18-month rendezvous to map shape changes, measure spin alteration, and perform gas thruster surface disturbance experiment.</p>
+          <div class="mission-stats">
+            <div><span class="ms-k">ARRIVAL</span><span class="ms-v">2029-04</span></div>
+            <div><span class="ms-k">DURATION</span><span class="ms-v">18 mo</span></div>
+            <div><span class="ms-k">FOCUS</span><span class="ms-v">Tidal deformation</span></div>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="mission-header">
+            <span class="mission-agency">ESA</span>
+            <span class="mission-name">RAMSES</span>
+          </div>
+          <p>Rapid Apophis Mission for Space Safety. Arrives February 2029 — <em>before</em> the flyby. Provides unique before-and-after observations with camera, lidar, and thermal spectrometer.</p>
+          <div class="mission-stats">
+            <div><span class="ms-k">LAUNCH</span><span class="ms-v">2028-04</span></div>
+            <div><span class="ms-k">ARRIVAL</span><span class="ms-v">2029-02</span></div>
+            <div><span class="ms-k">FOCUS</span><span class="ms-v">Before/after comparison</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SAFETY ═══ -->
+  <section id="safety" class="sect">
+    <div class="container">
+      <div class="sect-label">06 / SAFETY</div>
+      <h2 class="sect-title reveal">Impact Risk Assessment</h2>
+
+      <div class="safety-box reveal">
+        <pre class="safety-ascii">
+┌─────────────────────────────────────────┐
+│  IMPACT PROBABILITY     0.000000000     │
+│  TORINO SCALE           0 / 10          │
+│  RULED OUT THROUGH      2116            │
+│  STATUS                 ██ NO THREAT    │
+└─────────────────────────────────────────┘</pre>
+        <p>NASA and ESA have conclusively eliminated all impact scenarios through 2116. Radar observations from Goldstone and Green Bank (2021) refined Apophis's orbit to extraordinary precision.</p>
+      </div>
+
+      <div class="torino-history reveal">
+        <div class="sect-label" style="margin-bottom: 1.5rem;">TORINO SCALE HISTORY</div>
+        <div class="torino-row"><span class="t-yr">2004</span><span class="t-lvl t-4">4</span><span class="t-bar" style="width: 40%"></span><span class="t-desc">Peak rating — highest ever assigned</span></div>
+        <div class="torino-row"><span class="t-yr">2005</span><span class="t-lvl t-1">1</span><span class="t-bar" style="width: 10%"></span><span class="t-desc">Refined orbit from pre-discovery images</span></div>
+        <div class="torino-row"><span class="t-yr">2006</span><span class="t-lvl t-0">0</span><span class="t-bar" style="width: 0%"></span><span class="t-desc">2029 impact ruled out</span></div>
+        <div class="torino-row"><span class="t-yr">2021</span><span class="t-lvl t-0">0</span><span class="t-bar" style="width: 0%"></span><span class="t-desc">All scenarios eliminated through 2116</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ API / EMBED ═══ -->
+  <section id="api" class="sect">
+    <div class="container">
+      <div class="sect-label">07 / API</div>
+      <h2 class="sect-title reveal">Data Access</h2>
+
+      <div class="api-grid reveal">
+        <div class="api-block">
+          <div class="api-title">REST ENDPOINTS</div>
+          <pre class="api-pre">
+GET /api/arrival    → countdown + timestamp
+GET /api/position   → heliocentric + geocentric
+GET /api/facts      → structured Apophis data
+GET /api/orbit      → elements + path arrays
+
+Rate limit: 60 req/min. No key required.</pre>
+        </div>
+
+        <div class="api-block">
+          <div class="api-title">EMBED WIDGET</div>
+          <pre class="api-pre">
+&lt;div id="apophis-widget"
+     data-width="600"
+     data-height="400"
+     data-mode="approach"&gt;
+&lt;/div&gt;
+&lt;script src="/widget/embed.js"&gt;&lt;/script&gt;</pre>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent.trim()).then(()=>{this.textContent='copied';setTimeout(()=>this.textContent='copy',2000)})">copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="#overview">overview</a>
+        <a href="#approach">approach</a>
+        <a href="#viewer">viewer</a>
+        <a href="#specs">specs</a>
+        <a href="#missions">missions</a>
+        <a href="#safety">safety</a>
+        <a href="#api">api</a>
+      </div>
+      <p class="footer-note">Data: NASA JPL Horizons. Not affiliated with NASA/ESA.</p>
+    </div>
+  </footer>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <script src="./js/api-client.js?v=4"></script>
+  <script src="./js/hero-asteroid.js?v=4"></script>
+  <script src="./js/countdown.js?v=4"></script>
+  <script src="./js/ascii-title.js?v=4"></script>
+  <script src="./js/sections.js?v=4"></script>
+  <script src="./js/main.js?v=4"></script>
+</body>
+</html>

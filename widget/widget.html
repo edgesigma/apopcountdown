@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apophis Widget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./widget.css">
+</head>
+<body>
+  <div class="widget-header">
+    <span class="widget-title">APOPHIS 99942</span>
+    <span class="widget-countdown" id="w-countdown">
+      <span class="value" id="w-days">---</span>d
+      <span class="value" id="w-hours">--</span>h
+      <span class="value" id="w-minutes">--</span>m
+      <span class="value" id="w-seconds">--</span>s
+    </span>
+  </div>
+
+  <div class="widget-viewer" id="widget-viewer">
+    <div class="widget-loading" id="widget-loading">Loading...</div>
+    <div class="widget-controls">
+      <button class="widget-btn active" id="w-btn-orbital" data-mode="orbital">Orbital</button>
+      <button class="widget-btn" id="w-btn-approach" data-mode="approach">Approach</button>
+    </div>
+  </div>
+
+  <div class="widget-footer">
+    <span class="widget-info">
+      Distance: <span class="info-value" id="w-distance">--</span>
+    </span>
+    <span class="widget-credit">
+      <a href="https://apophiscountdown.com" target="_blank">apophiscountdown.com</a>
+    </span>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="./widget.js"></script>
+</body>
+</html>

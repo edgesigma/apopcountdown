@@ -1,0 +1,88 @@
+/* ── Scroll-triggered entrance animations ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children */
+.stagger-children .reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger-children .reveal:nth-child(2) { transition-delay: 100ms; }
+.stagger-children .reveal:nth-child(3) { transition-delay: 200ms; }
+.stagger-children .reveal:nth-child(4) { transition-delay: 300ms; }
+.stagger-children .reveal:nth-child(5) { transition-delay: 400ms; }
+.stagger-children .reveal:nth-child(6) { transition-delay: 500ms; }
+
+/* ── Glow pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(79, 195, 247, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(79, 195, 247, 0.25); }
+}
+
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ── Gradient text shimmer ── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Fade in on load ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-in-delay-1 { animation-delay: 0.2s; opacity: 0; }
+.fade-in-delay-2 { animation-delay: 0.4s; opacity: 0; }
+.fade-in-delay-3 { animation-delay: 0.6s; opacity: 0; }
+.fade-in-delay-4 { animation-delay: 0.8s; opacity: 0; }

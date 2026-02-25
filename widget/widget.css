@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background: #0a0a0f;
+  color: #e8e8f0;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(18, 18, 26, 0.9);
+  border-bottom: 1px solid rgba(79, 195, 247, 0.12);
+  flex-shrink: 0;
+}
+
+.widget-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4fc3f7;
+  letter-spacing: 0.05em;
+}
+
+.widget-countdown {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #a0a0b8;
+}
+
+.widget-countdown .value {
+  color: #4fc3f7;
+  font-weight: 700;
+}
+
+.widget-viewer {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.widget-viewer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.widget-controls {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  gap: 4px;
+}
+
+.widget-btn {
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  color: #a0a0b8;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  transition: all 0.15s;
+}
+
+.widget-btn:hover, .widget-btn.active {
+  background: rgba(79, 195, 247, 0.15);
+  border-color: #4fc3f7;
+  color: #4fc3f7;
+}
+
+.widget-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 12px;
+  background: rgba(18, 18, 26, 0.9);
+  border-top: 1px solid rgba(79, 195, 247, 0.12);
+  flex-shrink: 0;
+}
+
+.widget-info {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: #6a6a82;
+}
+
+.widget-info .info-value {
+  color: #4fc3f7;
+}
+
+.widget-credit {
+  font-size: 0.55rem;
+  color: #6a6a82;
+}
+
+.widget-credit a {
+  color: #4fc3f7;
+  text-decoration: none;
+}
+
+.widget-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6a6a82;
+  font-size: 0.75rem;
+}

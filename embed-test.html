@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embed Test — Third-Party Site</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #f5f5f0;
+      color: #333;
+      line-height: 1.8;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.3rem; margin-top: 2rem; color: #555; }
+    p { margin-bottom: 1rem; }
+    .widget-wrapper {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+    }
+    .caption {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 0.5rem;
+    }
+    hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
+  </style>
+</head>
+<body>
+  <h1>My Astronomy Blog</h1>
+  <p><em>A sample third-party site demonstrating the Apophis widget embed</em></p>
+  <hr>
+
+  <h2>The Apophis Flyby Is Coming</h2>
+  <p>In 2029, asteroid 99942 Apophis will make an extraordinarily close pass by Earth. Here's a live 3D viewer you can interact with — try switching between Orbital and Close Approach modes:</p>
+
+  <!-- This is all a third-party site needs to add -->
+  <div class="widget-wrapper">
+    <div id="apophis-widget"
+         data-width="700"
+         data-height="450"
+         data-mode="orbital">
+    </div>
+  </div>
+  <p class="caption">Interactive widget powered by apophiscountdown.com</p>
+
+  <script src="http://localhost:3000/widget/embed.js"></script>
+
+  <hr>
+  <p>The widget above is loaded via a single <code>&lt;script&gt;</code> tag and a <code>&lt;div&gt;</code> container. It runs in an isolated iframe — no CSS conflicts, no dependency issues.</p>
+</body>
+</html>
