@@ -14,6 +14,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
 
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_e3SSqlHXqJRQymyyGT6a1lTN1CSMTc9FmBQ46IxZK2s', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-01-30'
+    })
+  </script>
+
   <link rel="stylesheet" href="./css/app.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☄️</text></svg>">
 </head>
@@ -395,5 +404,60 @@ Rate limit: 60 req/min. No key required.</pre>
   <script src="./js/ascii-title.js?v=4"></script>
   <script src="./js/sections.js?v=4"></script>
   <script src="./js/main.js?v=4"></script>
+
+  <!-- PostHog Custom Events -->
+  <script>
+  (function() {
+    // Track section visibility
+    var sections = ['overview','approach','viewer','specs','missions','safety','api'];
+    var seen = {};
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !seen[entry.target.id]) {
+          seen[entry.target.id] = true;
+          posthog.capture('section_viewed', { section: entry.target.id });
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Track time to first scroll
+    var scrolled = false;
+    var pageLoad = Date.now();
+    window.addEventListener('scroll', function() {
+      if (!scrolled) {
+        scrolled = true;
+        posthog.capture('first_scroll', { seconds: Math.round((Date.now() - pageLoad) / 1000) });
+      }
+    }, { once: true });
+
+    // Track nav link clicks
+    document.querySelectorAll('#navbar .nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        posthog.capture('nav_click', { target: a.getAttribute('href') });
+      });
+    });
+
+    // Track 3D viewer mode toggles
+    var btnOrbital = document.getElementById('btn-orbital');
+    var btnApproach = document.getElementById('btn-approach');
+    if (btnOrbital) btnOrbital.addEventListener('click', function() {
+      posthog.capture('viewer_mode', { mode: 'orbit' });
+    });
+    if (btnApproach) btnApproach.addEventListener('click', function() {
+      posthog.capture('viewer_mode', { mode: 'flyby' });
+    });
+
+    // Track embed code copy
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        posthog.capture('embed_code_copied');
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
