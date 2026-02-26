@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* Render at exactly 1200x630 — screenshot this page for the OG image PNG */
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'IBM Plex Mono', monospace;
+      background: #0b0c0e;
+      color: #c8cad0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(232, 168, 73, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 168, 73, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Vignette */
+    body::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .sys-tag {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: #6e7179;
+      margin-bottom: 24px;
+    }
+
+    .sys-tag span {
+      color: #e8a849;
+    }
+
+    .title {
+      font-size: 96px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #eaebf0;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      font-weight: 300;
+      color: #6e7179;
+      letter-spacing: 0.08em;
+      margin-bottom: 48px;
+    }
+
+    .date-block {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .date-main {
+      font-size: 32px;
+      font-weight: 600;
+      color: #e8a849;
+      letter-spacing: 0.04em;
+    }
+
+    .date-sep {
+      width: 1px;
+      height: 32px;
+      background: #222328;
+    }
+
+    .date-detail {
+      font-size: 15px;
+      color: #6e7179;
+      letter-spacing: 0.06em;
+    }
+
+    .stats {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 28px;
+      font-weight: 600;
+      color: #eaebf0;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #44464d;
+      letter-spacing: 0.15em;
+      margin-top: 4px;
+    }
+
+    .domain {
+      font-size: 14px;
+      font-weight: 400;
+      color: #44464d;
+      letter-spacing: 0.12em;
+    }
+
+    /* Corner brackets */
+    .corner {
+      position: absolute;
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+      border-color: #222328;
+      border-style: solid;
+    }
+    .corner--tl { top: 32px; left: 32px; border-width: 1px 0 0 1px; }
+    .corner--tr { top: 32px; right: 32px; border-width: 1px 1px 0 0; }
+    .corner--bl { bottom: 32px; left: 32px; border-width: 0 0 1px 1px; }
+    .corner--br { bottom: 32px; right: 32px; border-width: 0 1px 1px 0; }
+  </style>
+</head>
+<body>
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+
+  <div class="content">
+    <div class="sys-tag">SYS.99942 <span>&#9679; LIVE</span></div>
+    <div class="title">APOPHIS</div>
+    <div class="subtitle">CLOSEST ASTEROID FLYBY IN RECORDED HISTORY</div>
+    <div class="date-block">
+      <div class="date-main">2029-04-13</div>
+      <div class="date-sep"></div>
+      <div class="date-detail">21:46 UTC</div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val">31,600 km</div>
+        <div class="stat-label">CLOSEST APPROACH</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">370 m</div>
+        <div class="stat-label">DIAMETER</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">Mag 3.1</div>
+        <div class="stat-label">NAKED EYE</div>
+      </div>
+    </div>
+    <div class="domain">APOPHISCOUNTDOWN.COM</div>
+  </div>
+</body>
+</html>

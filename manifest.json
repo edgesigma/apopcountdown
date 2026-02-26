@@ -1,0 +1,17 @@
+{
+  "name": "Apophis Countdown",
+  "short_name": "Apophis",
+  "description": "Live countdown to asteroid 99942 Apophis's historic close approach on April 13, 2029",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0c0e",
+  "theme_color": "#0b0c0e",
+  "icons": [
+    {
+      "src": "/assets/og-image.png",
+      "sizes": "2400x1260",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
