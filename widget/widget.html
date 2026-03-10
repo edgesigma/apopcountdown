@@ -5,40 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apophis Widget</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./widget.css">
 </head>
 <body>
-  <div class="widget-header">
-    <span class="widget-title">APOPHIS 99942</span>
-    <span class="widget-countdown" id="w-countdown">
-      <span class="value" id="w-years">-</span>y
-      <span class="value" id="w-days">---</span>d
-      <span class="value" id="w-hours">--</span>h
-      <span class="value" id="w-minutes">--</span>m
-      <span class="value" id="w-seconds">--</span>s
-    </span>
-  </div>
+  <div class="viewer-wrap" id="viewer-container">
+    <div class="viewer-loading" id="viewer-loading">
+      <span class="spinner"></span>
+      <span>Initializing renderer...</span>
+    </div>
+    <div class="viewer-hud">
+      <div class="viewer-hud-left">
+        <button class="hud-btn" id="btn-orbital">orbit</button>
+        <button class="hud-btn active" id="btn-approach">flyby</button>
+      </div>
+      <div class="viewer-hud-center">
+        <div class="hud-countdown" id="countdown">
+          <span class="cd-val" id="cd-years">-</span><span class="cd-lbl">y</span>
+          <span class="cd-sep">:</span>
+          <span class="cd-val" id="cd-days">-</span><span class="cd-lbl">d</span>
+          <span class="cd-sep">:</span>
+          <span class="cd-val" id="cd-hours">-</span><span class="cd-lbl">h</span>
+          <span class="cd-sep">:</span>
+          <span class="cd-val" id="cd-minutes">-</span><span class="cd-lbl">m</span>
+          <span class="cd-sep">:</span>
+          <span class="cd-val" id="cd-seconds">-</span><span class="cd-lbl">s</span>
+        </div>
+      </div>
+      <div class="viewer-hud-right">
+        <div class="hud-data">
+          <span class="hud-label">DIST</span>
+          <span class="hud-value" id="viewer-distance">--</span>
+        </div>
+        <div class="hud-data">
+          <span class="hud-label">VEL</span>
+          <span class="hud-value" id="viewer-speed">--</span>
+        </div>
+      </div>
+    </div>
 
-  <div class="widget-viewer" id="widget-viewer">
-    <div class="widget-loading" id="widget-loading">Loading...</div>
-    <div class="widget-controls">
-      <button class="widget-btn active" id="w-btn-orbital" data-mode="orbital">Orbital</button>
-      <button class="widget-btn" id="w-btn-approach" data-mode="approach">Approach</button>
+    <!-- Vote overlay -->
+    <div class="vote-panel" id="vote-panel">
+      <div class="vote-question">Should it hit?</div>
+      <div class="vote-buttons" id="vote-buttons">
+        <button class="vote-btn vote-yes" id="vote-yes" data-vote="yes">YES</button>
+        <button class="vote-btn vote-no" id="vote-no" data-vote="no">NO</button>
+      </div>
+      <div class="vote-results" id="vote-results" style="display:none;">
+        <div class="vote-bar-wrap">
+          <div class="vote-bar vote-bar-yes" id="vote-bar-yes" style="width:50%">
+            <span class="vote-bar-label">YES <span id="vote-pct-yes">--</span>%</span>
+          </div>
+          <div class="vote-bar vote-bar-no" id="vote-bar-no" style="width:50%">
+            <span class="vote-bar-label">NO <span id="vote-pct-no">--</span>%</span>
+          </div>
+        </div>
+        <div class="vote-total" id="vote-total"></div>
+      </div>
     </div>
   </div>
 
   <div class="widget-footer">
-    <span class="widget-info">
-      Distance: <span class="info-value" id="w-distance">--</span>
-    </span>
-    <span class="widget-credit">
+    <span class="footer-credit">
       <a href="https://apophiscountdown.com" target="_blank">apophiscountdown.com</a>
     </span>
   </div>
 
+  <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <script src="./widget.js"></script>
+
+  <!-- Same viewer modules as the main page -->
+  <script src="../js/api-client.js"></script>
+  <script src="../viewer/constants.js"></script>
+  <script src="../viewer/earth.js"></script>
+  <script src="../viewer/asteroid.js"></script>
+  <script src="../viewer/orbit.js"></script>
+  <script src="../viewer/controls.js"></script>
+  <script src="../viewer/lighting.js"></script>
+  <script src="../viewer/viewer.js"></script>
+  <script src="../js/countdown.js"></script>
+  <script src="../js/vote.js"></script>
 </body>
 </html>

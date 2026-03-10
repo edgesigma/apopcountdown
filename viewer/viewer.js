@@ -457,7 +457,7 @@
 
     try {
       // Load real JPL Horizons close approach data
-      var caResp = await fetch('./api/close-approach.json');
+      var caResp = await fetch('/api/close-approach.json');
       if (!caResp.ok) throw new Error('Failed to load close-approach.json');
       var caData = await caResp.json();
       closeApproachData = caData.trajectory;

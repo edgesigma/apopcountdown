@@ -63,15 +63,15 @@ const ApophisAPI = {
   },
 
   position() {
-    return this._fetch('./api/position.json', 24 * 60 * 60 * 1000);
+    return this._fetch('/api/position.json', 24 * 60 * 60 * 1000);
   },
 
   facts() {
-    return this._fetch('./api/facts.json', 24 * 60 * 60 * 1000);
+    return this._fetch('/api/facts.json', 24 * 60 * 60 * 1000);
   },
 
   async orbit() {
-    const data = await this._fetch('./api/orbit.json', 24 * 60 * 60 * 1000);
+    const data = await this._fetch('/api/orbit.json', 24 * 60 * 60 * 1000);
     // Recompute current positions client-side from orbital elements
     data.apophis.currentPosition = this._computeCurrentPosition(data.apophis.elements);
     data.earth.currentPosition = this._computeCurrentPosition(data.earth.elements);
