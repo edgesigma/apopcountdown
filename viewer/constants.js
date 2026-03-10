@@ -19,11 +19,11 @@ const ViewerConstants = {
   EARTH_RADIUS_ORBITAL: 0.015,
   APOPHIS_RADIUS_ORBITAL: 0.008,
 
-  // Close approach view (1 unit = 10,000 km)
-  CLOSE_SCALE: 10000, // km per unit
+  // Close approach view: 1 unit = 10,000 km
+  CLOSE_SCALE: 10000,
   EARTH_RADIUS_KM: 6371,
   GEO_ALTITUDE_KM: 35786,
-  APOPHIS_CLOSE_SIZE: 0.02,
+  APOPHIS_CLOSE_SIZE: 0.04,
 
   // Camera
   ORBITAL_CAM_DISTANCE: 2.5,

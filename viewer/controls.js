@@ -1,7 +1,7 @@
 // OrbitControls wrapper
-const ViewerControls = {
-  setup(camera, domElement) {
-    const controls = new THREE.OrbitControls(camera, domElement);
+var ViewerControls = {
+  setup: function(camera, domElement) {
+    var controls = new THREE.OrbitControls(camera, domElement);
 
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
@@ -22,19 +22,19 @@ const ViewerControls = {
   /**
    * Animate camera to a new position/target.
    */
-  animateTo(controls, camera, targetPos, cameraPos, duration) {
+  animateTo: function(controls, camera, targetPos, cameraPos, duration) {
     duration = duration || 1500;
-    const startPos = camera.position.clone();
-    const startTarget = controls.target.clone();
-    const endPos = new THREE.Vector3(cameraPos.x, cameraPos.y, cameraPos.z);
-    const endTarget = new THREE.Vector3(targetPos.x, targetPos.y, targetPos.z);
-    const startTime = Date.now();
+    var startPos = camera.position.clone();
+    var startTarget = controls.target.clone();
+    var endPos = new THREE.Vector3(cameraPos.x, cameraPos.y, cameraPos.z);
+    var endTarget = new THREE.Vector3(targetPos.x, targetPos.y, targetPos.z);
+    var startTime = Date.now();
 
     function update() {
-      const elapsed = Date.now() - startTime;
-      const t = Math.min(elapsed / duration, 1);
-      // Ease in-out cubic
-      const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      var elapsed = Date.now() - startTime;
+      var t = Math.min(elapsed / duration, 1);
+      // Ease out quart — slow, cinematic deceleration
+      var ease = 1 - Math.pow(1 - t, 4);
 
       camera.position.lerpVectors(startPos, endPos, ease);
       controls.target.lerpVectors(startTarget, endTarget, ease);

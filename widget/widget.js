@@ -9,13 +9,16 @@
 
   // ── Countdown ──
   function updateCountdown() {
-    const diff = ARRIVAL_TIME - Date.now();
-    if (diff < 0) return;
+    let diff = ARRIVAL_TIME - Date.now();
+    if (diff < 0) diff = -diff;
     const s = Math.floor(diff / 1000);
     const m = Math.floor(s / 60);
     const h = Math.floor(m / 60);
     const d = Math.floor(h / 24);
-    document.getElementById('w-days').textContent = d;
+    const y = Math.floor(d / 365.25);
+    const rd = Math.floor(d - y * 365.25);
+    document.getElementById('w-years').textContent = y;
+    document.getElementById('w-days').textContent = String(rd).padStart(3, '0');
     document.getElementById('w-hours').textContent = String(h % 24).padStart(2, '0');
     document.getElementById('w-minutes').textContent = String(m % 60).padStart(2, '0');
     document.getElementById('w-seconds').textContent = String(s % 60).padStart(2, '0');
@@ -69,7 +72,7 @@
 
     // Orbital view
     buildOrbitalView(data);
-    buildCloseView(data);
+    await buildCloseView();
 
     // Initial camera
     if (currentMode === 'orbital') {
@@ -130,33 +133,72 @@
     }
   }
 
-  function buildCloseView(data) {
+  async function buildCloseView() {
     const SCALE = 10000;
     const earthR = 6371 / SCALE;
 
     // Earth
-    const earthGeo = new THREE.SphereGeometry(earthR, 32, 32);
+    const earthGeo = new THREE.SphereGeometry(earthR, 64, 32);
     const earthMat = new THREE.MeshStandardMaterial({ color: 0x4488ff, roughness: 0.7 });
     closeGroup.add(new THREE.Mesh(earthGeo, earthMat));
 
-    // Geo ring
+    // Atmosphere glow
+    const atmosGeo = new THREE.SphereGeometry(earthR * 1.06, 32, 32);
+    const atmosMat = new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: 0.1, side: THREE.BackSide });
+    closeGroup.add(new THREE.Mesh(atmosGeo, atmosMat));
+
+    // Geo ring — visible torus
     const geoR = (6371 + 35786) / SCALE;
-    const ringGeo = new THREE.RingGeometry(geoR - 0.002, geoR + 0.002, 64);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0x44ff88, transparent: true, opacity: 0.3, side: THREE.DoubleSide });
+    const ringGeo = new THREE.TorusGeometry(geoR, 0.01, 8, 128);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x44ff88, transparent: true, opacity: 0.3 });
     const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.rotation.x = -Math.PI / 2;
+    ring.rotation.x = Math.PI / 2;
     closeGroup.add(ring);
 
-    // Flyby path
-    if (data && data.closeApproach) {
-      const pts = data.closeApproach.map(p => new THREE.Vector3(
-        p.geocentric[0] * AU_KM / SCALE,
-        p.geocentric[2] * AU_KM / SCALE,
-        -p.geocentric[1] * AU_KM / SCALE
+    // Load real JPL close approach data
+    try {
+      const res = await fetch('../api/close-approach.json');
+      const caData = await res.json();
+      const trajectory = caData.trajectory;
+
+      const pts = trajectory.map(p => new THREE.Vector3(
+        p.x_km / SCALE,
+        p.z_km / SCALE,
+        -p.y_km / SCALE
       ));
-      const geo = new THREE.BufferGeometry().setFromPoints(pts);
-      closeGroup.add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0xff6e40, opacity: 0.8, transparent: true })));
+
+      // Tube ribbon instead of thin line
+      const curve = new THREE.CatmullRomCurve3(pts);
+      const tubeGeo = new THREE.TubeGeometry(curve, 128, 0.02, 6, false);
+      const tubeMat = new THREE.MeshBasicMaterial({
+        color: 0xff6e40,
+        transparent: true,
+        opacity: 0.6
+      });
+      closeGroup.add(new THREE.Mesh(tubeGeo, tubeMat));
+
+      // Closest approach marker
+      let minDist = Infinity, closestPt = null;
+      trajectory.forEach(p => {
+        if (p.distance_km < minDist) {
+          minDist = p.distance_km;
+          closestPt = new THREE.Vector3(p.x_km / SCALE, p.z_km / SCALE, -p.y_km / SCALE);
+        }
+      });
+      if (closestPt) {
+        const markerGeo = new THREE.SphereGeometry(0.04, 16, 16);
+        const markerMat = new THREE.MeshBasicMaterial({ color: 0xff6e40 });
+        const marker = new THREE.Mesh(markerGeo, markerMat);
+        marker.position.copy(closestPt);
+        closeGroup.add(marker);
+      }
+    } catch (err) {
+      console.warn('Widget: failed to load close approach data:', err);
     }
+
+    // Prevent zooming through Earth
+    controls.minDistance = earthR + 0.1;
+    controls.maxDistance = 25;
   }
 
   // ── Mode toggle ──

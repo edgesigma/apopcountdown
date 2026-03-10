@@ -201,6 +201,7 @@
       <div class="prose reveal">
         <p><strong>99942 Apophis</strong> is a near-Earth asteroid approximately <em>370 meters</em> in diameter — roughly the size of the Eiffel Tower laid on its side. Discovered June 19, 2004 at Kitt Peak Observatory, it was briefly the most threatening asteroid ever identified, with a 2.7% calculated impact probability.</p>
         <p>Named after the Egyptian serpent deity of chaos, Apophis's threat level has since been reduced to <strong>zero</strong>. But its 2029 flyby remains the closest approach of an asteroid this size in recorded history — and an extraordinary scientific opportunity.</p>
+        <p>NASA says it will miss. But what if enough people believed hard enough? Cast your vote in the viewer below — the universe might be listening.</p>
       </div>
     </div>
   </section>
@@ -289,8 +290,8 @@
       </div>
       <div class="viewer-hud">
         <div class="viewer-hud-left">
-          <button class="hud-btn active" id="btn-orbital">orbit</button>
-          <button class="hud-btn" id="btn-approach">flyby</button>
+          <button class="hud-btn" id="btn-orbital">orbit</button>
+          <button class="hud-btn active" id="btn-approach">flyby</button>
         </div>
         <div class="viewer-hud-right">
           <div class="hud-data">
@@ -301,6 +302,26 @@
             <span class="hud-label">VEL</span>
             <span class="hud-value" id="viewer-speed">--</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Vote overlay -->
+      <div class="vote-panel" id="vote-panel">
+        <div class="vote-question">Should it hit?</div>
+        <div class="vote-buttons" id="vote-buttons">
+          <button class="vote-btn vote-yes" id="vote-yes" data-vote="yes">YES</button>
+          <button class="vote-btn vote-no" id="vote-no" data-vote="no">NO</button>
+        </div>
+        <div class="vote-results" id="vote-results" style="display:none;">
+          <div class="vote-bar-wrap">
+            <div class="vote-bar vote-bar-yes" id="vote-bar-yes" style="width:50%">
+              <span class="vote-bar-label">YES <span id="vote-pct-yes">--</span>%</span>
+            </div>
+            <div class="vote-bar vote-bar-no" id="vote-bar-no" style="width:50%">
+              <span class="vote-bar-label">NO <span id="vote-pct-no">--</span>%</span>
+            </div>
+          </div>
+          <div class="vote-total" id="vote-total"></div>
         </div>
       </div>
     </div>
@@ -493,12 +514,13 @@ Rate limit: 60 req/min. No key required.</pre>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
-  <script src="./js/api-client.js?v=4"></script>
-  <script src="./js/hero-asteroid.js?v=4"></script>
-  <script src="./js/countdown.js?v=4"></script>
-  <script src="./js/ascii-title.js?v=4"></script>
-  <script src="./js/sections.js?v=4"></script>
-  <script src="./js/main.js?v=4"></script>
+  <script src="./js/api-client.js?v=5"></script>
+  <script src="./js/hero-asteroid.js?v=5"></script>
+  <script src="./js/countdown.js?v=5"></script>
+  <script src="./js/ascii-title.js?v=5"></script>
+  <script src="./js/sections.js?v=5"></script>
+  <script src="./js/vote.js?v=5"></script>
+  <script src="./js/main.js?v=5"></script>
 
   <!-- PostHog Custom Events -->
   <script>

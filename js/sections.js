@@ -30,13 +30,14 @@
 
   function loadViewer() {
     // Three.js already loaded globally
-    loadScript('./viewer/constants.js', () =>
-      loadScript('./viewer/lighting.js', () =>
-        loadScript('./viewer/asteroid.js', () =>
-          loadScript('./viewer/earth.js', () =>
-            loadScript('./viewer/orbit.js', () =>
-              loadScript('./viewer/controls.js', () =>
-                loadScript('./viewer/viewer.js')))))));
+    var v = '?v=5';
+    loadScript('./viewer/constants.js' + v, () =>
+      loadScript('./viewer/lighting.js' + v, () =>
+        loadScript('./viewer/asteroid.js' + v, () =>
+          loadScript('./viewer/earth.js' + v, () =>
+            loadScript('./viewer/orbit.js' + v, () =>
+              loadScript('./viewer/controls.js' + v, () =>
+                loadScript('./viewer/viewer.js' + v)))))));
   }
 
   function loadScript(src, cb) {
