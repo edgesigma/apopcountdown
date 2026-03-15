@@ -45,23 +45,31 @@
       </div>
     </div>
 
-    <!-- Vote overlay -->
-    <div class="vote-panel" id="vote-panel">
-      <div class="vote-question">Should it hit?</div>
-      <div class="vote-buttons" id="vote-buttons">
-        <button class="vote-btn vote-yes" id="vote-yes" data-vote="yes">YES</button>
-        <button class="vote-btn vote-no" id="vote-no" data-vote="no">NO</button>
-      </div>
-      <div class="vote-results" id="vote-results" style="display:none;">
-        <div class="vote-bar-wrap">
-          <div class="vote-bar vote-bar-yes" id="vote-bar-yes" style="width:50%">
-            <span class="vote-bar-label">YES <span id="vote-pct-yes">--</span>%</span>
-          </div>
-          <div class="vote-bar vote-bar-no" id="vote-bar-no" style="width:50%">
-            <span class="vote-bar-label">NO <span id="vote-pct-no">--</span>%</span>
-          </div>
+    <!-- Vote CTA -->
+    <button class="vote-cta" id="vote-cta">
+      <span class="vote-cta-text" id="vote-cta-text">Cast your vote!</span>
+    </button>
+
+    <!-- Vote modal -->
+    <div class="vote-modal" id="vote-modal">
+      <div class="vote-modal-inner">
+        <button class="vote-modal-close" id="vote-modal-close">&times;</button>
+        <div class="vote-question">Should it hit?</div>
+        <div class="vote-buttons" id="vote-buttons">
+          <button class="vote-btn vote-yes" id="vote-yes" data-vote="yes">YES</button>
+          <button class="vote-btn vote-no" id="vote-no" data-vote="no">NO</button>
         </div>
-        <div class="vote-total" id="vote-total"></div>
+        <div class="vote-results" id="vote-results" style="display:none;">
+          <div class="vote-bar-wrap">
+            <div class="vote-bar vote-bar-yes" id="vote-bar-yes" style="width:50%">
+              <span class="vote-bar-label">YES <span id="vote-pct-yes">--</span>%</span>
+            </div>
+            <div class="vote-bar vote-bar-no" id="vote-bar-no" style="width:50%">
+              <span class="vote-bar-label">NO <span id="vote-pct-no">--</span>%</span>
+            </div>
+          </div>
+          <div class="vote-total" id="vote-total"></div>
+        </div>
       </div>
     </div>
   </div>
