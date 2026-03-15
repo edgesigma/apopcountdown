@@ -22,7 +22,7 @@
   if (!baseUrl) baseUrl = window.location.origin;
 
   var iframe = document.createElement('iframe');
-  iframe.src = baseUrl + '/widget/widget.html?mode=' + mode + '&theme=' + theme;
+  iframe.src = baseUrl + '/widget/widget.html?v=6&mode=' + mode + '&theme=' + theme;
   iframe.width = width;
   iframe.height = height;
   iframe.style.border = 'none';
